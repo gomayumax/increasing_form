@@ -4,6 +4,7 @@
     <el-form ref="form" :model="form" label-width="120px">
       <Title></Title>
       <Description></Description>
+      <Context></Context>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button>Cancel</el-button>
@@ -16,6 +17,7 @@
 <script>
 import Title from './components/Title'
 import Description from './components/Description'
+import Context from './components/Context'
 
 export default {
   name: 'app',
@@ -26,7 +28,8 @@ export default {
   },
   components: {
     Title,
-    Description
+    Description,
+    Context
   },
   methods: {
     onSubmit: function () {

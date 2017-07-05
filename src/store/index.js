@@ -11,9 +11,17 @@ export default new Vuex.Store({
     form: {
       title: '',
       description: '',
-      name: 'hogehoge'
+      name: 'hogehoge',
+      blocks: []
     },
-    json: ''
+    json: '',
+    text: {
+      text: ''
+    },
+    head: {
+      heads_size: 2,
+      heads_text: ''
+    }
   },
   mutations: {
     updateTitle (state, text) {
@@ -21,6 +29,29 @@ export default new Vuex.Store({
     },
     updateDescription (state, text) {
       state.form.description = text
+    },
+    addBlock (state, blackName) {
+      if (blackName === 'head') {
+        state.form.blocks.push({
+          name: 'head',
+          block: state.head
+        })
+      }
+      if (blackName === 'text') {
+        state.form.blocks.push({
+          name: 'text',
+          block: state.text
+        })
+      }
+    },
+    updateBlockText (state, block) {
+      state.form.blocks[block.index].block.text = block.text
+    },
+    updateBlockHeadSize (state, block) {
+      state.form.blocks[block.index].block.heads_size = block.size
+    },
+    updateBlockHeadText (state, block) {
+      state.form.blocks[block.index].block.heads_text = block.text
     },
     createJson (state) {
       console.log(JSON.stringify(state))
@@ -32,6 +63,9 @@ export default new Vuex.Store({
     },
     description: function (state) {
       return state.form.description
+    },
+    blocks: function (state) {
+      return state.form.blocks
     }
   }
 })
