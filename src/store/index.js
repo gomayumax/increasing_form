@@ -14,14 +14,7 @@ export default new Vuex.Store({
       name: 'hogehoge',
       blocks: []
     },
-    json: '',
-    text: {
-      text: ''
-    },
-    head: {
-      heads_size: 2,
-      heads_text: ''
-    }
+    json: ''
   },
   mutations: {
     updateTitle (state, text) {
@@ -34,13 +27,18 @@ export default new Vuex.Store({
       if (blackName === 'head') {
         state.form.blocks.push({
           name: 'head',
-          block: state.head
+          block: {
+            heads_size: 2,
+            heads_text: ''
+          }
         })
       }
       if (blackName === 'text') {
         state.form.blocks.push({
           name: 'text',
-          block: state.text
+          block: {
+            text: ''
+          }
         })
       }
     },
