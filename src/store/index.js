@@ -23,9 +23,9 @@ export default new Vuex.Store({
     updateDescription (state, text) {
       state.form.description = text
     },
-    addBlock (state, blackName) {
-      if (blackName === 'head') {
-        state.form.blocks.push({
+    addBlock (state, obj) {
+      if (obj.blockName === 'head') {
+        state.form.blocks.splice(obj.prevBlockIndex + 1, 0, {
           name: 'head',
           block: {
             heads_size: 2,
@@ -33,8 +33,8 @@ export default new Vuex.Store({
           }
         })
       }
-      if (blackName === 'text') {
-        state.form.blocks.push({
+      if (obj.blockName === 'text') {
+        state.form.blocks.splice(obj.prevBlockIndex + 1, 0, {
           name: 'text',
           block: {
             text: ''
@@ -52,7 +52,7 @@ export default new Vuex.Store({
       state.form.blocks[block.index].block.heads_text = block.text
     },
     createJson (state) {
-      console.log(JSON.stringify(state))
+      console.log(JSON.stringify(state.form))
     }
   },
   getters: {

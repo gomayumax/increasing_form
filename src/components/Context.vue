@@ -1,12 +1,10 @@
 <template>
     <div class="context">
-        <el-menu theme="dark" class="el-menu-demo" mode="horizontal">
-            <el-menu-item index="1" @click="add('head')">head</el-menu-item>
-            <el-menu-item index="2" @click="add('text')">text</el-menu-item>
-        </el-menu>
+        <ContextMenu :isView=1></ContextMenu>
         <div class="block" v-for="(block, key) in blocks">
             <BlockHead v-if="block.name === 'head'" :blockNum=key></BlockHead>
             <BlockText v-if="block.name === 'text'" :blockNum=key></BlockText>
+            <AddBlockLine :prevBlockIndex=key></AddBlockLine>
         </div>
     </div>
 </template>
@@ -15,25 +13,24 @@
   // TODO:Headとかtextとかの名前にすると死ぬ
   import BlockHead from './context_block/BlockHead'
   import BlockText from './context_block/BlockText'
+  import ContextMenu from './ContextMenu'
+  import AddBlockLine from './AddBlockLine'
 
   export default {
     components: {
+      ContextMenu,
       BlockText,
-      BlockHead
+      BlockHead,
+      AddBlockLine
     },
     computed: {
       blocks: function () {
         return this.$store.getters.blocks
-      }
-    },
-    methods: {
-      add: function (blockName) {
-        // TODO: actionを介して読んだほうが本当は良いんだろうな
-        this.$store.commit('addBlock', blockName)
       }
     }
   }
 </script>
 
 <style>
+
 </style>
