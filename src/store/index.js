@@ -83,6 +83,9 @@ export default new Vuex.Store({
     },
     createJson (state) {
       console.log(JSON.stringify(state.form))
+    },
+    updateBlocks (state, obj) {
+      state.form.blocks = obj
     }
   },
   getters: {
