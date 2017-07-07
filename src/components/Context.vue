@@ -6,6 +6,7 @@
             <BlockHead v-if="block.name === 'head'" :blockNum=key></BlockHead>
             <BlockText v-if="block.name === 'text'" :blockNum=key></BlockText>
             <BlockQuotation v-if="block.name === 'quotation'" :blockNum=key></BlockQuotation>
+            <BlockImage v-if="block.name === 'image'" :blockNum=key></BlockImage>
             <AddBlockLine :prevBlockIndex=key></AddBlockLine>
         </div>
     </div>
@@ -17,6 +18,7 @@
   import BlockText from './context_block/BlockText'
   import ContextMenu from './ContextMenu'
   import BlockQuotation from './context_block/BlockQuotation'
+  import BlockImage from './context_block/BlockImage'
   import AddBlockLine from './AddBlockLine'
 
   export default {
@@ -25,6 +27,7 @@
       BlockText,
       BlockHead,
       BlockQuotation,
+      BlockImage,
       AddBlockLine
     },
     computed: {

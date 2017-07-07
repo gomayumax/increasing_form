@@ -51,9 +51,26 @@ export default new Vuex.Store({
           }
         })
       }
+      if (obj.blockName === 'image') {
+        state.form.blocks.splice(obj.prevBlockIndex + 1, 0, {
+          name: 'image',
+          block: {
+            image_url: '',
+            image_alt: '',
+            image_title: '',
+            image_description: '',
+            image_source_url: '',
+            image_source_title: '',
+            image_design_num: '1'
+          }
+        })
+      }
     },
     deleteBlock (state, obj) {
       state.form.blocks.splice(obj.key, 1)
+    },
+    updateBlock (state, obj) {
+      state.form.blocks[obj.index].block[obj.elementName] = obj.data
     },
     updateBlockText (state, block) {
       state.form.blocks[block.index].block.text = block.text
