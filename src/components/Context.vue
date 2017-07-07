@@ -1,9 +1,11 @@
 <template>
     <div class="context">
         <ContextMenu :isView=1></ContextMenu>
-        <div class="block" v-for="(block, key) in blocks">
+        <div class="context-block" v-for="(block, key) in blocks">
+            <el-button type="primary" icon="delete" class="button" @click="deleteBlock(key)"></el-button>
             <BlockHead v-if="block.name === 'head'" :blockNum=key></BlockHead>
             <BlockText v-if="block.name === 'text'" :blockNum=key></BlockText>
+            <BlockQuotation v-if="block.name === 'quotation'" :blockNum=key></BlockQuotation>
             <AddBlockLine :prevBlockIndex=key></AddBlockLine>
         </div>
     </div>
@@ -14,6 +16,7 @@
   import BlockHead from './context_block/BlockHead'
   import BlockText from './context_block/BlockText'
   import ContextMenu from './ContextMenu'
+  import BlockQuotation from './context_block/BlockQuotation'
   import AddBlockLine from './AddBlockLine'
 
   export default {
@@ -21,16 +24,26 @@
       ContextMenu,
       BlockText,
       BlockHead,
+      BlockQuotation,
       AddBlockLine
     },
     computed: {
       blocks: function () {
         return this.$store.getters.blocks
       }
+    },
+    methods: {
+      deleteBlock: function (key) {
+        this.$store.commit('deleteBlock', {key: key})
+      }
     }
   }
 </script>
 
 <style>
+    .button {
+        text-align: left;
+    }
+
 
 </style>

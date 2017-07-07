@@ -41,6 +41,19 @@ export default new Vuex.Store({
           }
         })
       }
+      if (obj.blockName === 'quotation') {
+        state.form.blocks.splice(obj.prevBlockIndex + 1, 0, {
+          name: 'quotation',
+          block: {
+            quotation_text: '',
+            quotation_source_url: '',
+            quotation_source_title: ''
+          }
+        })
+      }
+    },
+    deleteBlock (state, obj) {
+      state.form.blocks.splice(obj.key, 1)
     },
     updateBlockText (state, block) {
       state.form.blocks[block.index].block.text = block.text

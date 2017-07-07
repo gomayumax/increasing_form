@@ -3,7 +3,8 @@
         <el-menu theme="dark" class="el-menu-demo" mode="horizontal">
             <el-menu-item index="1" @click="add('head')">head</el-menu-item>
             <el-menu-item index="2" @click="add('text')">text</el-menu-item>
-            <el-menu-item index="3" @click="hiddenMenu">x</el-menu-item>
+            <el-menu-item index="3" @click="add('quotation')">quotation</el-menu-item>
+            <el-menu-item index="4" @click="hiddenMenu">x</el-menu-item>
         </el-menu>
     </div>
 </template>
