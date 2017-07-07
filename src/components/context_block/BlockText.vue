@@ -1,7 +1,7 @@
 <template>
     <div class="block">
         <el-form-item label="Text">
-            <el-input placeholder="Please input" :value="block.text" @input="updateBlockText($event)">
+            <el-input placeholder="Please input" :value="block.text" @input="updateBlock($event, 'text')">
                 <template slot="append">{{ wordCount }}</template>
             </el-input>
         </el-form-item>
@@ -27,11 +27,12 @@
       }
     },
     methods: {
-      updateBlockText: function (e) {
+      updateBlock: function (e, elementName) {
         // TODO: actionを介して読んだほうが本当は良いんだろうな
-        this.$store.commit('updateBlockText', {
-          text: e,
-          index: this.indexNum
+        this.$store.commit('updateBlock', {
+          data: e,
+          index: this.indexNum,
+          elementName: elementName
         })
       }
     }
